@@ -8,7 +8,7 @@ class Coupon {
     Coupon() {
     }
 
-    public Set<Integer> getPickedNumbers() {
+    Set<Integer> getPickedNumbers() {
         return pickedNumbers;
     }
 
@@ -16,11 +16,11 @@ class Coupon {
         this.pickedNumbers = pickedNumbers;
     }
 
-    public boolean isWinnerCoupon() {
+    boolean isWinnerCoupon() {
         return isWinner;
     }
 
-    public void setWinner(boolean winner) {
+    void setWinner(boolean winner) {
         isWinner = winner;
     }
 }

@@ -1,25 +1,24 @@
 
 import java.util.*;
-import java.util.stream.Stream;
 
 class Draw implements LottoInterface {
     private Set<Integer> drawNumbers;
     private Set<Coupon> coupons;
 
-    public Set<Integer> getDrawNumbers() {
+    Set<Integer> getDrawNumbers() {
         return drawNumbers;
     }
 
-    public void startNewDraw() {
+    void startNewDraw() {
         this.coupons = new HashSet<>();
         this.drawNumbers = newDraw();
     }
 
-    public Set<Coupon> getCouponsFromDraw() {
+    Set<Coupon> getCouponsFromDraw() {
         return coupons;
     }
 
-    public void createNewCoupon() {
+    void createNewCoupon() {
         Coupon coupon = new Coupon();
         coupon.setPickedNumbers(pickSixNumbers());
         coupon.setWinner(false);
