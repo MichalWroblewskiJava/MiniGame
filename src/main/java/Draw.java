@@ -6,28 +6,26 @@ class Draw implements LottoInterface {
     private Set<Integer> drawNumbers;
     private Set<Coupon> coupons;
 
-    Set<Integer> getDrawNumbers() {
+    private Set<Integer> getDrawNumbers() {
         return drawNumbers;
     }
 
-    boolean startNewDraw() {
+    private void startNewDraw() {
         this.coupons = new HashSet<>();
         this.drawNumbers = newDraw();
 
-        return this.coupons != null && this.drawNumbers != null;
     }
 
-    Set<Coupon> getCouponsFromDraw() {
+    private Set<Coupon> getCouponsFromDraw() {
         return coupons;
     }
 
-    boolean createNewCoupon() {
+    private void createNewCoupon() {
         Coupon coupon = new Coupon();
         coupon.setPickedNumbers(pickSixNumbers());
         coupon.setWinner(false);
         this.coupons.add(coupon);
 
-        return this.coupons != null;
     }
 
     @Override

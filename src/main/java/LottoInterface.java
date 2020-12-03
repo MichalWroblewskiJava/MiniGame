@@ -10,5 +10,4 @@ public interface LottoInterface {
 
     boolean isWinner(Coupon coupon);
 
-    //void startLottoGame();
 }
