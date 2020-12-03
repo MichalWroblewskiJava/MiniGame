@@ -1,5 +1,6 @@
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 class Draw implements LottoInterface {
     private Set<Integer> drawNumbers;
@@ -9,24 +10,29 @@ class Draw implements LottoInterface {
         return drawNumbers;
     }
 
-    void startNewDraw() {
+    boolean startNewDraw() {
         this.coupons = new HashSet<>();
         this.drawNumbers = newDraw();
+
+        return this.coupons != null && this.drawNumbers != null;
     }
 
     Set<Coupon> getCouponsFromDraw() {
         return coupons;
     }
 
-    void createNewCoupon() {
+    boolean createNewCoupon() {
         Coupon coupon = new Coupon();
         coupon.setPickedNumbers(pickSixNumbers());
         coupon.setWinner(false);
         this.coupons.add(coupon);
+
+        return this.coupons != null;
     }
 
     @Override
     public Set<Integer> pickSixNumbers() {
+        System.out.println();
         System.out.println("Proszę podaj 6 róznych liczb od 1 do 99, każdą liczbę po wprowdzeniu zatwierdz klawiszem Enter");
         Set<Integer> pickedSixNumbers = new HashSet<>();
         while (pickedSixNumbers.size() < 6) {
@@ -60,7 +66,6 @@ class Draw implements LottoInterface {
         return lottoNumbers;
     }
 
-
     @Override
     public boolean isWinner(Coupon coupon) {
         if (this.drawNumbers.equals(coupon.getPickedNumbers())) {
@@ -68,6 +73,26 @@ class Draw implements LottoInterface {
             return coupon.isWinnerCoupon();
         } else {
             return false;
+        }
+    }
+
+    static void startLottoGame() {
+        Draw draw = new Draw();
+        draw.startNewDraw();
+        draw.createNewCoupon();
+        for (Coupon coupon : draw.getCouponsFromDraw()) {
+            System.out.println("Wylosowane liczby to: "+ draw.getDrawNumbers().stream()
+                    .sorted()
+                    .collect(Collectors.toList()));
+            if (draw.isWinner(coupon)) {
+                System.out.println("Gratulacje wygrałeś z liczbami: " + coupon.getPickedNumbers().stream()
+                        .sorted()
+                        .collect(Collectors.toList()));
+            } else {
+                System.out.println("Nie wygrałeś, Twoje liczby to: "+ coupon.getPickedNumbers().stream()
+                        .sorted()
+                        .collect(Collectors.toList()));
+            }
         }
     }
 }
