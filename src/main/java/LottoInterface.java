@@ -4,10 +4,12 @@ import java.util.Set;
 
 public interface LottoInterface {
 
-    Set<Integer> pickSixNumbers();
 
-    Set<Integer> newDraw();
+    Set<Integer> newDrawOfNumbers();
 
-    boolean isWinner(Coupon coupon);
+    Coupon createNewCoupon();
+
+    void checkIfYouWin();
+
 
 }

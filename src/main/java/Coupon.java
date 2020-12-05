@@ -21,6 +21,6 @@ class Coupon {
     }
 
     void setWinner(boolean winner) {
-        isWinner = winner;
+        this.isWinner = winner;
     }
 }
