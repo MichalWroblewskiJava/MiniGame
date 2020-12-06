@@ -4,9 +4,9 @@ public class Main {
     public static void main(String[] args) {
 
         Draw draw = new Draw();
-        draw.createNewCoupon();
+        Coupon newCoupon = draw.createNewCoupon();
         draw.newDrawOfNumbers();
-        draw.checkIfYouWin();
+        draw.checkIfYouWin(newCoupon);
     }
 }
 

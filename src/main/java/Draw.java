@@ -6,13 +6,6 @@ class Draw implements LottoInterface {
     private Set<Integer> drawNumbers = new HashSet<>();
     private Set<Coupon> coupons = new HashSet<>();
 
-    private Set<Integer> getDrawNumbers() {
-        return drawNumbers;
-    }
-
-    private Set<Coupon> getCouponsFromDraw() {
-        return coupons;
-    }
 
     private Set<Integer> pickSixNumbers() {
         System.out.println();
@@ -67,8 +60,7 @@ class Draw implements LottoInterface {
     }
 
     @Override
-    public void checkIfYouWin() {
-        for (Coupon coupon : this.coupons) {
+    public boolean checkIfYouWin(Coupon coupon) {
             System.out.println("Wylosowane liczby to: " + drawNumbers.stream()
                     .sorted()
                     .collect(Collectors.toList()));
@@ -76,11 +68,12 @@ class Draw implements LottoInterface {
                 System.out.println("Gratulacje wygrałeś z liczbami: " + coupon.getPickedNumbers().stream()
                         .sorted()
                         .collect(Collectors.toList()));
+                return true;
             } else {
                 System.out.println("Nie wygrałeś, Twoje liczby to: " + coupon.getPickedNumbers().stream()
                         .sorted()
                         .collect(Collectors.toList()));
+                return false;
             }
-        }
     }
 }

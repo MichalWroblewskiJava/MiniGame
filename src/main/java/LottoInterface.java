@@ -9,7 +9,7 @@ public interface LottoInterface {
 
     Coupon createNewCoupon();
 
-    void checkIfYouWin();
+    boolean checkIfYouWin(Coupon coupon);
 
 
 }
