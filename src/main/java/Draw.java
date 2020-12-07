@@ -22,9 +22,9 @@ class Draw implements LottoInterface {
                     optionalCheck.ifPresentOrElse(i -> System.out.println("Podałeś już liczbę: " + inputInt),
                             () -> pickedSixNumbers.add(inputInt));
                 } else {
-                    System.out.println("Podana liczba nie jest z zakresu od 1 do 99");
+                    throw new IllegalArgumentException();
                 }
-            } catch (NumberFormatException | InputMismatchException e) {
+            } catch (InputMismatchException | IllegalArgumentException e) {
                 System.out.println("Nie podałeś liczby od 1 do 99");
                 e.printStackTrace();
             }
@@ -61,19 +61,19 @@ class Draw implements LottoInterface {
 
     @Override
     public boolean checkIfYouWin(Coupon coupon) {
-            System.out.println("Wylosowane liczby to: " + drawNumbers.stream()
+        System.out.println("Wylosowane liczby to: " + drawNumbers.stream()
+                .sorted()
+                .collect(Collectors.toList()));
+        if (coupon.isWinnerCoupon()) {
+            System.out.println("Gratulacje wygrałeś z liczbami: " + coupon.getPickedNumbers().stream()
                     .sorted()
                     .collect(Collectors.toList()));
-            if (coupon.isWinnerCoupon()) {
-                System.out.println("Gratulacje wygrałeś z liczbami: " + coupon.getPickedNumbers().stream()
-                        .sorted()
-                        .collect(Collectors.toList()));
-                return true;
-            } else {
-                System.out.println("Nie wygrałeś, Twoje liczby to: " + coupon.getPickedNumbers().stream()
-                        .sorted()
-                        .collect(Collectors.toList()));
-                return false;
-            }
+            return true;
+        } else {
+            System.out.println("Nie wygrałeś, Twoje liczby to: " + coupon.getPickedNumbers().stream()
+                    .sorted()
+                    .collect(Collectors.toList()));
+            return false;
+        }
     }
 }

@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.time.Instant;
 import java.util.*;
 
@@ -59,6 +61,12 @@ public class DrawTest {
         boolean isWinner = draw.checkIfYouWin(coupon);
         assertEquals(expected, isWinner);
 
+    }
+
+    @Test
+    public void createNewCouponTest(){
+        InputStream inputStream = System.in;
+       // ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new Object[])
     }
 }
 
